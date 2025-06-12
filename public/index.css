@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h2{
+    text-align: center;
+    margin:10px 5px;
+}
+th {
+    white-space: nowrap;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 8px;
+}
+thead{
+    background-color: #279602;
+}
+input {
+    width:auto;
+    border: 1px solid #ccc;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 4px 8px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    width: 100px;
+    border-radius: 10px 10px 10px 10px;
+}
+.btn{
+    text-align: center; 
+    margin-top: 20px;
+}
+.search-container {
+    display: flex;
+    flex-direction: right;
+    justify-content: flex-end;
+    margin-top: 20px;
+    
+}
+.search-container input {
+    width: 200px;   
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-container label{
+    margin-right: 10px;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: medium;
+}
+.file-input{
+    width: 200px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.styled-form {
+            background: #9f8f8faf;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+            padding: 32px 24px 16px 24px;
+            margin-bottom: 32px;
+            max-width: 950px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px 32px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0;
+        }
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #333;
+        }
+        .form-group input,
+        .form-group select {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #f9fafb;
+            transition: border 0.2s;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #2563eb;
+            outline: none;
+            background: #fff;
+        }
+        .btn {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+        .btn-submit {
+            background: #2563eb;
+            width: fit-content;
+            color: #fff;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-submit:hover {
+            background: #1d4ed8;
+        }
+        @media (max-width: 700px) {
+            .styled-form {
+                padding: 16px 6px 8px 6px;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .btn {
+                margin-top: 16px;
+            }
+        }
