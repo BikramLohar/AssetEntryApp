@@ -13,7 +13,10 @@ document.getElementById('assetform').addEventListener('submit',
         })
             .then(response => response.json())
             .then(resp => alert(resp.message))
+            event.target.reset()
             .catch(error => alert('error:' + error.message))
+
+            
     }
 
 
@@ -84,6 +87,8 @@ function searchAsset() {
     }).then(async response => {
         const text = await response.text(); // safely read raw text
         const data = text ? JSON.parse(text) : {};
+        
+        
 
         
         if (data.message) {
@@ -106,7 +111,7 @@ function searchAsset() {
             if(event.target==modal)
             modal.style.display='none';
         }
-
+        
 
     }).catch(error => {
         document.getElementById('assetResult').innerHTML = `<p style="color: red;">Search Error: ${error.message}</p>`;
