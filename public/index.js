@@ -13,10 +13,10 @@ document.getElementById('assetform').addEventListener('submit',
         })
             .then(response => response.json())
             .then(resp => alert(resp.message))
-            event.target.reset()
+        event.target.reset()
             .catch(error => alert('error:' + error.message))
 
-            
+
     }
 
 
@@ -35,6 +35,8 @@ document.getElementById('file').addEventListener('change',
         }
     }
 )
+
+
 
 // document.getElementById('uploadform').addEventListener('submit',async function(e){
 //     e.preventDefault();
@@ -72,9 +74,9 @@ document.getElementById('file').addEventListener('change',
 
 function searchAsset() {
     const assestCode = document.getElementById('searchAssestCode').value.trim();
-    const modal=document.getElementById('assetModal');
-    const closeBtn=document.getElementById('closebtn');
-    const resultDiv = document.getElementById('assetResult')
+    const modal = document.getElementById('assetModal');
+    const closeBtn = document.getElementById('closebtn');
+    const resultDiv = document.getElementById('assetResult');
 
 
     fetch('http://localhost:3000/search', {
@@ -87,10 +89,10 @@ function searchAsset() {
     }).then(async response => {
         const text = await response.text(); // safely read raw text
         const data = text ? JSON.parse(text) : {};
-        
-        
 
-        
+
+
+
         if (data.message) {
             resultDiv.innerHTML = `<p style="color: red;">${data.message}</p>`;
         } else {
@@ -100,18 +102,22 @@ function searchAsset() {
                 <p><strong>Current User Name:</strong> ${data.current_user_name}</p>
                 <p><strong>Employee Status:</strong> ${data.employee_status}</p>
                 <p><strong>Department:</strong> ${data.department}</p>
+                <p><strong>Assest Model:</strong>${data.system_model}</p>
+                <p><strong>System Name:</strong>${data.system_name}</p>
+                <p><strong>Serial Number:</strong>${data.serial_no}</p>
+
             `;
         }
-        modal.style.display='block';
+        modal.style.display = 'block';
 
-        closeBtn.onclick=()=>{
-            modal.style.display='none';
+        closeBtn.onclick = () => {
+            modal.style.display = 'none';
         }
-        window.onclick=(event)=>{
-            if(event.target==modal)
-            modal.style.display='none';
+        window.onclick = (event) => {
+            if (event.target == modal)
+                modal.style.display = 'none';
         }
-        
+
 
     }).catch(error => {
         document.getElementById('assetResult').innerHTML = `<p style="color: red;">Search Error: ${error.message}</p>`;
@@ -132,7 +138,7 @@ function verifyPasscode() {
         document.getElementById('passwordModal').style.display = 'none';
         window.location.href = 'http://localhost:3000/download';
     }
-    if(input === ''){
+    if (input === '') {
         errmsg.style.display = 'block';
         errmsg.textContent = 'please enter the passcode';
     }
@@ -153,15 +159,24 @@ function downloadCSV() {
     document.getElementById('passwordModal').style.display = 'flex';
     document.getElementById('errorMsg').style.display = 'none';
     document.getElementById('passcodeInput').value = '';
-    
+
 
 }
 
-function closeBox(){
-    document.getElementById('passwordModal').style.display='none';
+function closeBox() {
+    document.getElementById('passwordModal').style.display = 'none';
     document.getElementById('errorMsg').style.display = 'none';
     document.getElementById('passcodeInput').value = '';
 }
+
+function toggleNav(){
+    const nav=document.getElementById('navbar-links')
+    nav.classList.toggle('show');
+}
+
+
+
+
 
 
 // function fileInput() {

@@ -58,13 +58,13 @@ db.connect((err) => {
 const formatDate = (value) => value === "" ? null : value;
 
 //sending file and data from frontend to backend 
-app.post('/submit',  (req, res) => {
-   // console.log('file recevied', req.file);
+app.post('/submit', (req, res) => {
+    // console.log('file recevied', req.file);
     // console.log('data recevied',req.body);
-    
+
 
     const fromdata = req.body;
-   // const fileName = req.file ? req.file.filename : null;
+    // const fileName = req.file ? req.file.filename : null;
 
     const sql = `INSERT INTO assest (
   \`slNo\`, \`employee_id\`, \`current_user_name\`, site, \`previous_user\`,
@@ -120,6 +120,71 @@ app.post('/search', (req, res) => {
         res.status(200).json(result[0]);
     });
 });
+
+//update Data
+app.put('/update', (req, res) => {
+    const {
+        assetCode,
+        employee_id,
+        current_user_name,
+        site,
+        previous_user,
+        employee_status,
+        system_name,
+        system_model,
+        os_name,
+        make,
+        system_manufacturer,
+        serial_no,
+        processor_config,
+        department,
+        upgradation_items,
+        upgradation_date,
+        upgradation_price,
+        remarks
+    } = req.body;
+
+    const sql = `update assest SET employee_id = ?,
+    current_user_name = ?,
+    site = ?,
+    previous_user = ?,
+    employee_status=?,
+    system_name =?, 
+    system_model = ?,
+    os_name=?,
+    make =?,
+    system_manufacturer= ?,
+    serial_no = ?,
+    processor_config = ?,
+    department = ?,
+    upgradation_items =?,
+    upgradation_date = ?,
+    upgradation_price= ?,
+    remarks = ?
+    where asset_code =?`;
+
+    const values = [employee_id, current_user_name,site, previous_user, employee_status,
+        system_name,  system_model, os_name, make, system_manufacturer,
+        serial_no,processor_config, department, upgradation_items, formatDate(upgradation_date), upgradation_price,remarks,assetCode];
+    console.log('Received update data:', req.body);   
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Update Failed', err);
+            return res.status(500).json({
+                message: 'Error Update the Asset Data',
+                error: err
+            });
+        }
+        res.status(200).json({
+            message: 'Insert The Updated Asset Data Sucessfuly',
+
+        });
+    });
+
+})
+
+
 app.get('/download', (req, res) => {
     const sql = 'SELECT * FROM assest';
     db.query(sql, (err, results) => {
@@ -150,6 +215,9 @@ app.get('/download', (req, res) => {
         }
     });
 });
+
+
+
 
 
 app.listen(port, () => {

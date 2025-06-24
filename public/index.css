@@ -1,28 +1,119 @@
-* {
-    margin: 0;
-    padding: 0;
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Poppins', sans-serif;
+ }
+
+body {
+   background: linear-gradient(135deg, #f00612 0%, #e1f816 100%);;
 }
 
 h2 {
     text-align: center;
-    margin: 10px 5px;
+    margin-top:55px;
+
 }
 
-th {
+/* th {
     white-space: nowrap;
+} */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    background:transparent;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14x;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
 }
 
-table,
-th,
-td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 8px;
+
+.navbar-links {
+    display: flex;
+    gap: 20px;
+    font-weight: bold;
+    list-style: none;
+    padding: auto;
+    flex-direction: left;
+    align-items: center;
+    justify-content: center;
+
 }
 
-thead {
-    background-color: #279602;
+.navbar-links li a {
+    color: black;
+    text-decoration: none;
+    font-weight:bold;
+    font-size: 1.4rem;
+    transition: 0.2s;
+    opacity: 1;
 }
+.navbar-links li a:hover{
+    color: white;
+}
+
+.nav-tab {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+.nav-toggle {
+    display: none;
+    font-size: 26px;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        background-color: #2563eb;
+        width: 100%;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        padding: 10px 0;
+    }
+
+    .navbar-links.show {
+        display: flex;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-tab {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+}
+.active {
+  background-color: #007BFF;
+  background: linear-gradient(white 0%,blue 100%);
+  color: white;
+  border-radius: 5px;
+  border: 2px solid black;
+  transition: 0.3s all ease;
+
+}
+
 
 input {
     width: auto;
@@ -48,11 +139,15 @@ button {
 
 .search-container {
     display: flex;
-    flex-direction: right;
-    justify-content: flex-end;
-    margin-top: 20px;
 
 }
+
+.search-container button {
+    width: 77px;
+    background-color: #000;
+}
+
+
 
 .search-container input {
     width: 200px;
@@ -60,6 +155,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 
 .search-container label {
@@ -67,6 +163,7 @@ button {
     margin-top: 5px;
     font-weight: bold;
     font-size: medium;
+    color: #000;
 }
 
 .file-input {
@@ -84,6 +181,7 @@ button {
     max-width: 950px;
     margin-left: auto;
     margin-right: auto;
+   
 }
 
 .form-grid {
@@ -96,6 +194,7 @@ button {
     display: flex;
     flex-direction: column;
     margin-bottom: 0;
+    animation: fadeInUp 1s 0.5s forwards;
 }
 
 .form-group label {
@@ -148,39 +247,42 @@ button {
 .btn-submit:hover {
     background: #1d4ed8;
 }
+
 #passwordModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  display: none;;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none;
+    ;
 }
 
 .modal-box {
-  background: #fff;
-  padding: 20px;
-  width: 300px;
-  border-radius: 10px;
-  position: relative;
-  text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background: #fff;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .error-msg {
-  color: red;
-  margin-top: 10px;
-  display: none;
+    color: red;
+    margin-top: 10px;
+    display: none;
 }
+
 #close-btn {
     position: absolute;
     top: 2px;
-      
+
     background: transparent;
     color: #333;
     border: none;
@@ -188,40 +290,43 @@ button {
     cursor: pointer;
 
 }
+
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.5); /* Overlay effect */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Overlay effect */
 }
 
 .modal-content {
-  background-color: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  border-radius: 10px;
-  width: 400px;
-  position: relative;
-  text-align: left;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    position: relative;
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .close-btn {
-  color: #aaa;
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
 }
 
 .close-btn:hover {
-  color: #000;
+    color: #000;
 }
 
 
@@ -241,32 +346,3 @@ button {
     }
 }
 
-/* #passwordModal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-
-#passcodeInput{
-    width: 100%;
-    padding: 8px; 
-    margin-top: 10px;
-}
-#errorMsg{
-    color: red; 
-    display: none; 
-    margin-top: 10px;
-}
-
-#SubmitBtn{
-   margin-top: 10px; 
-   padding: 8px 16px;
-} */

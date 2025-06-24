@@ -6,19 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assest Details Entry App</title>
     <link rel="stylesheet" href="/public/index.css">
+    <link rel="stylesheet" href="/public/Home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+ 
 </head>
 
 <body>
-    <div class="container">
-        <div class="search-container">
-            <label for="searchInput">Enter Asset Id:</label>
-            <input type="text" id="searchAssestCode" placeholder="Enter Asset Code..." />
-            <button type="button" id="searchBtn" onclick="searchAsset()"><i class="fas fa-search"></i> Search</button>
-        </div>
+    <header>
+        <nav class="navbar-indexHome">
+            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+            <ul class="navbar-links" id="navbar-links">
+                <div class="nav-tab">
+                    <li class="nav-item"><a href="index.html" >Home</a></li>
+                    <li class="nav-item"><a href="newEntry.html" >New Entry</a></li>
+                    <li class="nav-item"> <a href="EditEntry.html" >Edit Entry</a></li>
+                </div>
+            </ul>
+           
+        </nav>
+    </header>
 
-    </div>
-    <h2>Assets Details</h2>
+    
+
+    <!-- <h2>Assets Details</h2>
 
     <form id="assetform" class="styled-form">
         <div class="form-grid">
@@ -210,7 +220,7 @@
                         style="width:100%; border-collapse:collapse;">
 
                     </table>
-                    
+
                 </div>
             </div>
 
@@ -222,7 +232,31 @@
 
 
 
+    <script src="/public/index.js"></script> -->
+
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Emami Realty Limited</h1>
+            <p style="justify-self: center;">Emami Realty, the real estate arm of Emami Group was incorporated in 2006, to undertake real estate projects in residential, commercial and retail sectors.</p>
+    
+        </div>
+        
+        <!-- Floating Background Elements -->
+        <div class="floating-elements">
+            <div class="floating-element" style="width: 200px; height: 200px; top: 10%; left: 5%; animation-delay: 0s;"></div>
+            <div class="floating-element" style="width: 150px; height: 150px; top: 60%; left: 80%; animation-delay: 2s;"></div>
+            <div class="floating-element" style="width: 100px; height: 100px; top: 30%; left: 70%; animation-delay: 4s;"></div>
+            <div class="floating-element" style="width: 250px; height: 250px; top: 70%; left: 10%; animation-delay: 6s;"></div>
+        </div>
+    </section>
+
+    
     <script src="/public/index.js"></script>
+    <script src="/public/Home.js"></script>
+
 </body>
 
 </html>
