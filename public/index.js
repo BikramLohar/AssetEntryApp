@@ -77,6 +77,7 @@ function searchAsset() {
     const modal = document.getElementById('assetModal');
     const closeBtn = document.getElementById('closebtn');
     const resultDiv = document.getElementById('assetResult');
+    if (!assestCode) return alert("Please Enter the AssetCode")
 
 
     fetch('http://localhost:3000/search', {
@@ -108,7 +109,9 @@ function searchAsset() {
 
             `;
         }
+        document.getElementById('searchAssestCode').value = '';
         modal.style.display = 'block';
+
 
         closeBtn.onclick = () => {
             modal.style.display = 'none';
@@ -130,9 +133,14 @@ function verifyPasscode() {
 
     const input = document.getElementById('passcodeInput').value;
     const errmsg = document.getElementById('errorMsg');
+    const close = document.getElementById('close-btn')
 
-    if (Number(input) !== password) {
+
+
+    if (parseInt(input) !== password) {
         errmsg.style.display = 'block';
+        close.style.display = 'flex';
+        close.style.flexDirection = 'row';
     } else {
         errmsg.style.display = 'none';
         document.getElementById('passwordModal').style.display = 'none';
@@ -155,10 +163,12 @@ function downloadCSV() {
     // }else{
     //     window.location.href = 'http://localhost:3000/download';
     // }
-
+    const close = document.getElementById('close-btn');
     document.getElementById('passwordModal').style.display = 'flex';
     document.getElementById('errorMsg').style.display = 'none';
     document.getElementById('passcodeInput').value = '';
+    close.style.display = 'flex';
+    close.style.flexDirection = 'row';
 
 
 }
@@ -167,10 +177,11 @@ function closeBox() {
     document.getElementById('passwordModal').style.display = 'none';
     document.getElementById('errorMsg').style.display = 'none';
     document.getElementById('passcodeInput').value = '';
+
 }
 
-function toggleNav(){
-    const nav=document.getElementById('navbar-links')
+function toggleNav() {
+    const nav = document.getElementById('navbar-links')
     nav.classList.toggle('show');
 }
 

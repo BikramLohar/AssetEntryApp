@@ -110,7 +110,10 @@ app.post('/search', (req, res) => {
     db.query(sql, [assetCode], (err, result) => {
         if (err) {
             console.error('Search Failed', err);
-            res.status(500).json({ message: "Error searching asset", error: err });
+            res.status(500).json({
+                message: "Error searching asset",
+                error: err
+            });
         } else {
             if (result.length === 0) {
                 return res.status(404).json({ message: "Asset not Found" });
@@ -121,11 +124,12 @@ app.post('/search', (req, res) => {
     });
 });
 
-//update Data
+//update AssetData
 app.put('/update', (req, res) => {
     const {
         assetCode,
         employee_id,
+        asset_code,
         current_user_name,
         site,
         previous_user,
@@ -145,6 +149,7 @@ app.put('/update', (req, res) => {
     } = req.body;
 
     const sql = `update assest SET employee_id = ?,
+    asset_code = ?,
     current_user_name = ?,
     site = ?,
     previous_user = ?,
@@ -163,10 +168,10 @@ app.put('/update', (req, res) => {
     remarks = ?
     where asset_code =?`;
 
-    const values = [employee_id, current_user_name,site, previous_user, employee_status,
-        system_name,  system_model, os_name, make, system_manufacturer,
-        serial_no,processor_config, department, upgradation_items, formatDate(upgradation_date), upgradation_price,remarks,assetCode];
-    console.log('Received update data:', req.body);   
+    const values = [employee_id,asset_code, current_user_name, site, previous_user, employee_status,
+        system_name, system_model, os_name, make, system_manufacturer,
+        serial_no, processor_config, department, upgradation_items, formatDate(upgradation_date), upgradation_price, remarks,assetCode];
+    console.log('Received update data:', req.body);
 
     db.query(sql, values, (err, result) => {
         if (err) {
@@ -216,7 +221,35 @@ app.get('/download', (req, res) => {
     });
 });
 
+//delete asset
+app.delete('/delete', (req, res) => {
+    const { assetCode } = req.body;
 
+    if (!assetCode) {
+        return res.status(400).json({
+            message: 'missing asset code'
+        })
+    }
+    const sql = 'DELETE FROM assest where asset_code =?';
+
+    db.query(sql, [assetCode], (err, result) => {
+        if (err) {
+            console.error('Delete Failed', err);
+            res.status(500).json({
+                message: 'Error Deleting Asset',
+                err: err
+            });
+        }
+        if (result.length === 0) {
+            return res.status(404).json({
+                message: 'Asset Not Found'
+            })
+        }
+        res.status(200).json({
+            message: 'Asset Delted SuccessFully'
+        });
+    });
+});
 
 
 

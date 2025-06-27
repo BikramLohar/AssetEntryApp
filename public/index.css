@@ -243,6 +243,9 @@ button {
     align-items: center;
     gap: 8px;
 }
+#newEntryEditSubmit{
+    margin-top: 10px;
+}
 
 .btn-submit:hover {
     background: #1d4ed8;
@@ -260,7 +263,7 @@ button {
     align-items: center;
     z-index: 1000;
     display: none;
-    ;
+    
 }
 
 .modal-box {
